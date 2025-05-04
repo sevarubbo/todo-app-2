@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "todo-app-2",
+    "name": "Todo App",
     "slug": "todo-app-2",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -14,13 +14,18 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sevarubbo.todoapp",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.sevarubbo.todoapp"
     },
     "web": {
       "bundler": "metro",
@@ -28,6 +33,18 @@
     },
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3460843b-8b8a-455f-bf96-6010618dbb59"
+      }
+    },
+    "owner": "seva.rubbo",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/3460843b-8b8a-455f-bf96-6010618dbb59"
     }
   }
 }
