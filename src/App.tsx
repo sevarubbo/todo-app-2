@@ -4,6 +4,7 @@ import { auth } from "./firebaseConfig";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { SignInScreen } from "./screens/sign-in";
+import TodoScreen from "./screens/TodoScreen";
 import { registerRootComponent } from "expo";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
@@ -41,7 +42,22 @@ export function App() {
       >
         {user ? (
           // User is signed in
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen
+            name="Home"
+            component={TodoScreen}
+            options={{
+              headerShown: true,
+              title: "Todo List",
+              headerRight: () => (
+                <TouchableOpacity
+                  style={styles.signOutButton}
+                  onPress={() => auth.signOut()}
+                >
+                  <Text style={styles.signOutText}>Sign Out</Text>
+                </TouchableOpacity>
+              ),
+            }}
+          />
         ) : (
           // User is not signed in
           <Stack.Screen name="SignIn" component={SignInScreen} />
@@ -51,44 +67,13 @@ export function App() {
   );
 }
 
-// Temporary HomeScreen component - you can move this to a separate file later
-function HomeScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome to Todo App!</Text>
-      <TouchableOpacity style={styles.button} onPress={() => auth.signOut()}>
-        <Text style={styles.buttonText}>Sign Out</Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
-    backgroundColor: "#fff",
+  signOutButton: {
+    marginRight: 15,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
-    color: "#333",
-  },
-  button: {
-    backgroundColor: "#007AFF",
-    height: 50,
-    borderRadius: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: 20,
-    marginTop: 20,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 18,
+  signOutText: {
+    color: "#007AFF",
+    fontSize: 16,
     fontWeight: "600",
   },
 });
