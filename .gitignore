@@ -62,3 +62,7 @@ yarn-error.log*
 
 # Temporary files
 pr_description.md
+
+# Firebase
+.firebase/
+firebase-debug.log
