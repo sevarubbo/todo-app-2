@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Required instructions
+
+- Never push to main branch
+- Never use `--no-verify` when committing changes
+- Never commit without confirming first (Important).
