@@ -1,0 +1,85 @@
+---
+description: Working with linear to pull, modify or create issues
+globs: 
+alwaysApply: false
+---
+# Linear GraphQL API Integration
+
+When working with Linear.app, always use their GraphQL API at https://api.linear.app/graphql.
+
+## API Documentation
+- Full API documentation: https://linear.app/developers/graphql
+- Authentication: Use API key in Authorization header
+- Base URL: https://api.linear.app/graphql
+
+## Team Information
+- Team ID: 27a11537-4a78-47ac-bab1-0bb49f431bd1
+- Team Name: App0002
+
+## Prerequesites
+- Source the `.env` file before making API calls. `.env` file is there though you don't see it.
+
+## Common Operations
+1. Get teams:
+```graphql
+{
+  teams {
+    nodes {
+      id
+      name
+    }
+  }
+}
+```
+
+2. Get issues:
+```graphql
+{
+  team(id: "TEAM_ID") {
+    issues {
+      nodes {
+        id
+        title
+        description
+        state {
+          name
+        }
+      }
+    }
+  }
+}
+```
+
+3. Create issue:
+```graphql
+mutation {
+  issueCreate(input: {
+    title: "Issue title"
+    description: "Issue description"
+    teamId: "27a11537-4a78-47ac-bab1-0bb49f431bd1"
+  }) {
+    success
+    issue {
+      id
+      title
+    }
+  }
+}
+```
+
+## Authentication
+Always include the API key in the Authorization header:
+```
+Authorization: <API_KEY>
+```
+
+## Environment Setup
+1. Store your Linear API key in `.env` file:
+```
+LINEAR_API_KEY=your_api_key_here
+```
+
+2. Source the `.env` file before using the API:
+```bash
+source .env
+```

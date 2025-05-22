@@ -1,0 +1,32 @@
+---
+description: Pull requests (PR) openning and editing
+globs: 
+alwaysApply: false
+---
+# New PR workflow
+1. Ensure package version is updated based on all changes ahead of main
+2. Run `npm i` to ensure version updated in `package.lock`
+3. Create a branch. Name should reflect most important changes.
+4. Stage, commit and push changes
+5. Open a draft PR.
+    - Use [pull_request_template.md](mdc:.github/pull_request_template.md) to write description.
+    - Use a temporary txt file for description to preserve formatting.
+6. Show PR in browser using `gh pr view --web`
+
+# Notes
+- Use the GitHub CLI (`gh pr`) to manage pull requests.
+- Don't forget to push the branch before openning new pull request.
+- Always consider all changes ahead of main branch when working with pull requests.
+- Use semver for branch titles. E.g feat/add-new-awesome-component
+- Use semver for PR titles. Add an unexpected but related emoji to the title. E.g. "feat: 💂‍♀️ Secure auth flow"
+- Use rilkean / dark souls vibe language everywhere
+- To check review comments use gh api command, e.g:
+  ```
+  > gh pr view
+  > gh api \
+  -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  /repos/OWNER/REPO/pulls/PULL_NUMBER/comments
+  ```
+- Provide clickable link to PR
+- Use squash merge to merge PRs
